@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Péter ta balloune</title>
+  <link rel="shortcut icon" type="image/png" href="images/ico_full.png"/>
+  <link rel="stylesheet" href="stylesheet/prism.css">
+  <link rel="stylesheet" href="stylesheet/style.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+  <!-- https://images.unsplash.com/photo-1519122295308-bdb40916b529?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1568&q=80 -->
+  <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url(images/balloons.jpg);">
+    <div id="class-languages">
+      <i class="fab fa-html5 mr-1" style="color: #f84820"></i>
+      <i class="fab fa-css3-alt mr-1" style="color: #1970b5"></i>
+      <i class="fab fa-js-square mr-1" style="color: #FFE01B"></i>
+    </div>
+    <div class="container">
+      <div class="main">
+        <img src="images/logo.png" alt="">
+        <div class="class-title">
+          <h1>Péter ta balloune...</h1>
+          <h4>intro à P5.js</h4>
+        </div>
+      </div>
+      <p><em>Péter la balloune de quelqu'un</em> est une expression québécoise qui veut dire ramener cette personne à la réalité. Et c'est exactement ce que fait ce défi! Il nous ramène à la dure réalité: même un jeu pour enfants comme <a href="https://www.youtube.com/watch?v=TANJP041TKE" target="_blank">Balloon Pop</a> est difficile à coder. Raison de plus pour se lancer!</p>
+      <a class="btn btn-primary tl-button" href="#challenge" role="button">Commencer !</a>
+    </div>
+  </div>
+
+  <div class="container" id="challenge">
+    <div class="gamification">
+      <div class="progress">
+        <div class="progress-bar bg-danger progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="5" aria-valuemin="0" aria-valuemax="100"></div>
+      </div>
+      <div class="alert alert-danger" role="alert">
+        A simple danger alert—check it out!
+      </div>
+    </div>
+
+    <div class="accordion" id="accordionExample">
+      <div class="card">
+        <div class="card-header" id="headingOne">
+          <h2 class="mb-0">
+            <button class="btn btn-link done task" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+              Etape 1 - Défis à compléter avant celui-ci
+            </button>
+          </h2>
+        </div>
+        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+          <div class="card-body">
+            <p>Avant de t'attaquer à ce défi, on te conseille de compléter les deux défis suivants:</p>
+            <ol>
+              <li><a href="https://techieslab.github.io/year-prediction_instructions/" target="_blank">En 2020 je serai...</a></li>
+              <li><a href="https://techieslab.github.io/rainbow_instructions/" target="_blank">Ça va bien aller</a></li>
+            </ol>
+
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header" id="headingTwo">
+          <h2 class="mb-0">
+            <button class="btn btn-link done task" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              Etape 2 - Connexion à P5.js
+            </button>
+          </h2>
+        </div>
+        <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionExample">
+          <div class="card-body">
+            <p>Première chose avant de commencer à travailler sur n'importe quel projet p5.js: <strong>connecte-toi <a href="https://editor.p5js.org/" target="_blank">à ton compte</a></strong> en cliquant sur "Log in".</p>
+            <img src="images/log_in.png" class="img-shadow mb-3" alt="">
+
+            <p>Renomme ton projet en cliquant sur le petit crayon <i class="fas fa-pencil-alt"></i>.</p>
+
+            <div class="alert alert-warning" role="alert">
+              <p>
+                <i class="fas fa-exclamation-circle"></i>
+                Ça semble bête à dire... mais n'oublie pas de te connecter à ton compte avant de commencer à travailler! Cela te permettra de sauvegarder gratuitement ton travail (tes <em>sketchs</em>) sur les serveurs de p5.js. Si tu ne le fais pas, tu dois alors télécharger les fichers localement (sur ton ordinateur) et s'il arrive quoique ce soit, tu risques de perdre tout ton travail 😢
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header" id="headingThree">
+          <h2 class="mb-0">
+            <button class="btn btn-link collapsed task" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+              Etape 3 - Dessine ton premier ballon
+            </button>
+          </h2>
+        </div>
+        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+          <div class="card-body">
+            <p>Notre but pour la première partie du défi est simplement de faire apparaître deux ballons de différentes couleurs sur notre canvas et de les faire bouger du bas du canvas vers le haut.</p>
+            <p>🤔 Comment faire pour dessiner des ballons en p5.js? Rappelle-toi qu'il faut toujours commencer par la solution la plus simple! Une fois qu'elle fonctionne, tu peux rendre ton code plus sophistiqué.</p>
+            <p>Dans le défi <a href="https://techieslab.github.io/rainbow_instructions/" target="_blank">Ça va bien aller</a>, on a vu comment dessiner en p5.js des cercles de différentes tailles et couleurs.On peut donc utiliser la fonction <code class="language-js">circle()</code> pour dessiner un ballon rouge. Ce ne sera pas un ballon très réaliste, mais c'est un début!</p>
+
+            <p>Où doit-on utiliser la fonction <code class="language-js">circle()</code> dans notre code? Dans la fonction <code class="language-js">setup()</code>? Dans la fonction <code class="language-js">draw()</code>?</p>
+
+            <div class="alert alert-warning" role="alert">
+              <p>
+                <i class="fas fa-exclamation-circle"></i>
+                Rappelle-toi que la fonction <code class="language-js">setup()</code> n'est exécutée qu'une seule fois après que tu aies cliqué sur <strong>PLAY</strong> alors que la fonction <code class="language-js">draw()</code> est exécutée plusieurs fois par secondes.
+              </p>
+            </div>
+
+            <p>
+              <a class="btn btn-danger" data-toggle="collapse" href="#collapseAnswer1" role="button" aria-expanded="false" aria-controls="collapseAnswer1">Réponse</a>
+            </p>
+            <div class="collapse mb-3" id="collapseAnswer1">
+              <div class="card card-body">
+                <p>Dans la fonction <code class="language-js">draw()</code>, vu que les coordonnées de notre ballon vont changer pendant l'exécution du programme.</p>
+                <p>Ton code pourrait avoir l'air de quelque chose comme ceci:</p>
+                <pre><code class="language-js">
+                  //...
+                  function draw() {
+                  background(220);
+
+                  fill("red");
+                  circle(100, 100, 60);
+                }
+              </code></pre>
+            </div>
+          </div>
+
+          <img class="img-shadow mb-3" src="images/red_round.png" alt="">
+
+          <p>Pour la tige de ton ballon, cherche dans la <a href="https://p5js.org/reference/">documentation de p5.js</a> une fonction qui pourrait dessiner une ligne. </p>
+
+          <p>
+            <a class="btn btn-primary" data-toggle="collapse" href="#collapseHint1" role="button" aria-expanded="false" aria-controls="collapseHint1">Indice</a>
+          </p>
+          <div class="collapse mb-3" id="collapseHint1">
+            <div class="card card-body">
+              <p>En anglais, le mot "ligne" se dit <em>line</em>...</p>
+            </div>
+          </div>
+
+          <p>Si tu choisis les mêmes coordoonées d'origine de ton trait que pour le cercle, ça va donner un drôle de résultat:</p>
+
+          <pre><code class="language-js">line(100 , 100, 100, 250);</code></pre>
+
+          <img class="img-shadow mb-3" src="images/balloon_stem.png" alt="">
+
+
+          <p>Tu veux que le trait commence là où finit le cercle rouge. Tu dois donc "baisser" le trait, c'est-à-dire changer sa position sur l'axe des <code class="language-js">y</code>.</p>
+
+          <img class="img-shadow mb-3" src="images/balloon_stem_ok.png" alt="">
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header" id="headingFour">
+        <h2 class="mb-0">
+          <button class="btn btn-link collapsed task" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+            Etape 4 - Le ballon s'envole!🎈
+          </button>
+        </h2>
+      </div>
+      <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
+        <div class="card-body">
+          <p>On va maintenant faire bouger notre ballon du bas vers le haut de notre canvas.</p>
+
+          <img class="img-shadow" src="images/moving_balloon.gif" alt="">
+
+          <p>C'est la position sur l'axe vertical qui doit constamment changer. À chaque fois que la fonction <code class="language-js">draw()</code> est appelée, la position en Y doit avoir... diminué ou augmenté?🤔</p>
+
+          <p>
+            <a class="btn btn-primary" data-toggle="collapse" href="#collapseHint2" role="button" aria-expanded="false" aria-controls="collapseHint2">Indice</a>
+          </p>
+          <div class="collapse mb-3" id="collapseHint2">
+            <div class="card card-body">
+              <p>Diminué... vu que l'origine de ton canvas et en haut à gauche. La position en Y va commencer à 200, puis 199, 198...</p>
+            </div>
+          </div>
+
+
+          <p>Comment faire?</p>
+
+          <p>Il faut choisir une position en Y et faire en sorte que l'ordinateur s'en souvienne pour pouvoir la réutiliser. Et qui dit "se souvenir" en programmation, dit...</p>
+
+          <h3>VARIABLES!</h3>
+
+          <p>On va stocker la valeur de la position en Y dans une variable réutilisable:</p>
+
+          <pre><code class="language-js">
+            let positionY= 400;
+            circle(200, positionY, 60);
+          </code></pre>
+
+          <p>Maintenant, diminuons la valeur de cette variable. Pour augmenter la valeur d'une variable de 1, on peut écrire ceci: <code class="language-js">positionY++</code> ou ceci: <code class="language-js">positionY += 1</code>. À ton avis, comment faire pour diminuer la valeur?</p>
+
+          <p>Lance ton code pour tester... Notre ballon reste en place 😢. Pourtant, si tu utlises le bon vieux <code class="language-js">console.log()</code> tu devrais voir que la valeur de <code class="language-js">positionY</code> change. En fait, elle alterne entre deux valeurs...</p>
+
+          <p>Comment faire pour que la valeur diminue constamment?</p>
+          <p>
+            <a class="btn btn-primary" data-toggle="collapse" href="#collapseHint3" role="button" aria-expanded="false" aria-controls="collapseHint3">Indice</a>
+          </p>
+          <div class="collapse mb-3" id="collapseHint3">
+            <div class="card card-body">
+              <p>Tu ne peux pas déclarer ta variable <code class="language-js">positionY</code> dans la fonction <code class="language-js">draw()</code>, car cette dernière est appellée plusieurs fois par seconde. Et donc plusieurs fois par seconde, on replace le ballon à sa position verticale initiale.</p>
+            </div>
+          </div>
+
+          <p>Tu as sans doute noté qu'il va falloir également modifier le code de la tige du ballon pour qu'elle suive... C'est là où utiliser des variables s'avère très utile!</p>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" id="headingSix">
+        <h2 class="mb-0">
+          <button class="btn btn-link collapsed task" type="button" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+            Etape 5 - Rends ton ballon plus réaliste
+          </button>
+        </h2>
+      </div>
+      <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordionExample">
+        <div class="card-body">
+
+          <p>Notre code de base fonctionne, alors on peut s'amuser à le rendre plus sophistiqué. Ce qui serait chouette, c'est de travailler sur l'apparence du ballon pour qu'il ait une forme plus réaliste.</p>
+          <img class="img-shadow mb-3" src="images/ellipse_balloon.png" alt="">
+          <p>Au lieu d'utiliser un cercle, tu peux utiliser une ellipse. Consulte la <a href="https://p5js.org/reference/#/p5/ellipse">documentation de p5.js</a> pour dessiner des ellipses.</p>
+
+          <p>L'idée, c'est d'utiliser deux ellipses: une pour le ballon lui-même, et l'autre (toute petite) pour son noeud.</p>
+
+          <p>Quelques pistes pour t'aider:</p>
+          <ul>
+            <li>Pour enlever le contour noir du ballon, il faut utiliser la fonction <code class="language-js">noStroke()</code></li>
+            <li>Si tu utilises la fonction <code class="language-js">noStroke()</code> ta tige va probablement disparaître. Tu peux la faire apparaître à nouveau avec la fonction <code class="language-js">stroke()</code></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header" id="headingSeven">
+        <h2 class="mb-0">
+          <button class="btn btn-link collapsed task" type="button" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+            Etape 6 - Couleur aléatoire
+          </button>
+        </h2>
+      </div>
+      <div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-parent="#accordionExample">
+        <div class="card-body">
+
+          <p>Donne une couleur aléatoire à ton ballon en utilisant la fonction <code class="language-js">random()</code>.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" id="headingSeven">
+        <h2 class="mb-0">
+          <button class="btn btn-link collapsed task" type="button" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+            Etape 7 - Crée un second ballon
+          </button>
+        </h2>
+      </div>
+      <div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-parent="#accordionExample">
+        <div class="card-body">
+        <p>Ton second ballon doit avoir une position et une couleur différentes du premier.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<div class="footer">
+  <div class="footer-links">
+    <a href="https://techieslab.be/"><i class="fas fa-globe"></i></i></a>
+    <a href="https://www.facebook.com/TechiesLabBrussels"><i class="fab fa-facebook"></i></a>
+    <a href="https://twitter.com/TechiesLab"><i class="fab fa-twitter"></i></a>
+  </div>
+  <div class="footer-copyright">
+    <a href="https://openclassrooms.com/fr/courses/1603881-apprenez-a-creer-votre-site-web-avec-html5-et-css3/3298561-faites-votre-mise-en-page-avec-flexbox#/id/r-3298711" rel="noopener noreferrer" target="_blank" class="alert-link copyright">
+      <i class="far fa-copyright"></i>
+      2020 Techies Lab ASBL. All rights reserved.
+    </a>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script src="javascript/prism.js"></script>
+<script type="text/javascript" src="javascript/app.js"></script>
+</body>
+</html>
