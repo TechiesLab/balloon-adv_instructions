@@ -256,16 +256,31 @@
 
           <p>Il n'y a pas de "meilleure" façon de faire. C'est plutôt selon ce qui te tente pour ce projet. Dans tous les cas, il est utile de savoir coder les deux options.</p>
 
-          <p>Dans les deux options, c'est la fonction <code class="language-js">fill()</code> qui détermine la couleur d'une forme en p5.js. Cette fonction prend un ou plusieurs arguments (entre les parenthèses). Ces arguments peuvent être de différents types:</p>
+          <p>Dans les deux options, c'est la fonction <a href="https://p5js.org/reference/#/p5/fill"><code class="language-js">fill()</code></a> qui détermine la couleur d'une forme en p5.js. Cette fonction prend un ou plusieurs arguments (entre les parenthèses). Ces arguments peuvent être de différents types:</p>
           <ul>
             <li>un <strong>nombre</strong>, comme par exemple: <code class="language-js">fill(51);</code></li>
-            <li>une <strong>string</strong>, comme par exemple: <code class="language-js">fill("hotpink");</code> (<em>oui, oui,</em> <strong>hotpink</strong> est une couleur du web!)</li>
-            <li>un <strong>objet color</strong>, qu'on obtient avec la fonction </li>
+            <li>une <strong>string</strong>, comme par exemple: <code class="language-js">fill("hotpink");</code> (<em>oui, oui,</em> <strong style="color: hotpink">hotpink</strong> est une couleur du web!)</li>
+            <li>un <strong>objet color</strong>, qu'on obtient avec la fonction <code class="language-js">color()</code></li>
           </ul>
 
-          <h4>A. Complètement au hasard</h4>
+          <h4>A. Couleur complètement au hasard</h4>
 
-          <p></p>
+          <p>Pour laisser l'ordinateur choisir complètement au hasard, il faut utiliser un argument avec des <em>nombres</em>. Si on laisse l'ordinateur choisir au hasard des lettres (pour une <em>string</em>, il va former des mots complètement loufoques. L'instruction <code class="language-js">fill("qwemzi");</code> n'aura pas beaucoup de succès, comme tu peux te l'imaginer!</p>
+
+          <p>On pourrait utiliser la formule <code class="language-js">fill(51)</code> et remplacer le 51 par un nombre au hasard. Comment faire pour trouver un nombre au hasard en p5.js? Avec la fonction <code class="language-js">random()</code>.</p>
+          <img class="img-shadow mb-3" src="images/random_color_one_number.gif" alt="">
+
+          <p>Problème! La couleur est toujours noire et le noeud de mon ballon est toujours rouge...</p>
+
+          <p>Pour résoudre le fait que la couleur est toujours noire, il faut voir ce que random() génère comme nombre. Comme faire pour inspecter?🔎 Avec un <code class="language-js">console.log()</code> comme toujours!</p>
+
+          <img class="img-shadow mb-3" src="images/consolelog_random.gif" alt="">
+
+          <p>Toutes les nombres générés par la fonction <code class="language-js">random()</code> se trouvent entre 0 et 1. Or pour la fonction <code class="language-js">fill()</code>, si on code <code class="language-js">fill(0)</code>, c'est la même chose que de coder <code class="language-js">fill("black")</code>. L'échelle va de 0 à 255. Si tu codes <code class="language-js">fill(140)</code> tu vas déjà voir une différence de couleur.</p>
+
+          <p>Notre fonction <code class="language-js">random()</code></p>
+
+
         </div>
       </div>
     </div>
