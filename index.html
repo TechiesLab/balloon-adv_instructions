@@ -22,7 +22,7 @@
         <img src="images/logo.png" alt="">
         <div class="class-title">
           <h1>Péter ta balloune...</h1>
-          <h4>intro à P5.js</h4>
+          <h4>P5.js intermédiaire</h4>
         </div>
       </div>
       <p><em>Péter la balloune de quelqu'un</em> est une expression québécoise qui veut dire ramener cette personne à la réalité. Et c'est exactement ce que fait ce défi! Il nous ramène à la dure réalité: même un jeu pour enfants comme <a href="https://www.youtube.com/watch?v=TANJP041TKE" target="_blank">Balloon Pop</a> est difficile à coder. Raison de plus pour se lancer!</p>
@@ -63,12 +63,12 @@
       <div class="card">
         <div class="card-header" id="headingTwo">
           <h2 class="mb-0">
-            <button class="btn btn-link done task" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            <button class="btn btn-link task" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
               Etape 2 - Connexion à P5.js
             </button>
           </h2>
         </div>
-        <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionExample">
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
           <div class="card-body">
             <p>Première chose avant de commencer à travailler sur n'importe quel projet p5.js: <strong>connecte-toi <a href="https://editor.p5js.org/" target="_blank">à ton compte</a></strong> en cliquant sur "Log in".</p>
             <img src="images/log_in.png" class="img-shadow mb-3" alt="">
@@ -248,7 +248,24 @@
       <div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-parent="#accordionExample">
         <div class="card-body">
 
-          <p>Donne une couleur aléatoire à ton ballon en utilisant la fonction <code class="language-js">random()</code>.</p>
+          <p>Donne une couleur aléatoire à ton ballon à chaque fois que tu déclenches ton animation. Ici tu as deux options:</p>
+          <ol type="A">
+            <li>Laisser l'ordinateur choisir au hasard une couleur parmi toutes les couleurs possibles du web.</li>
+            <li>Choisir quelques couleurs de ton choix et donner à ton ballon une de ces couleurs.</li>
+          </ol>
+
+          <p>Il n'y a pas de "meilleure" façon de faire. C'est plutôt selon ce qui te tente pour ce projet. Dans tous les cas, il est utile de savoir coder les deux options.</p>
+
+          <p>Dans les deux options, c'est la fonction <code class="language-js">fill()</code> qui détermine la couleur d'une forme en p5.js. Cette fonction prend un ou plusieurs arguments (entre les parenthèses). Ces arguments peuvent être de différents types:</p>
+          <ul>
+            <li>un <strong>nombre</strong>, comme par exemple: <code class="language-js">fill(51);</code></li>
+            <li>une <strong>string</strong>, comme par exemple: <code class="language-js">fill("hotpink");</code> (<em>oui, oui,</em> <strong>hotpink</strong> est une couleur du web!)</li>
+            <li>un <strong>objet color</strong>, qu'on obtient avec la fonction </li>
+          </ul>
+
+          <h4>A. Complètement au hasard</h4>
+
+          <p></p>
         </div>
       </div>
     </div>
@@ -258,6 +275,21 @@
         <h2 class="mb-0">
           <button class="btn btn-link collapsed task" type="button" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
             Etape 7 - Crée un second ballon
+          </button>
+        </h2>
+      </div>
+      <div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-parent="#accordionExample">
+        <div class="card-body">
+        <p>Ton second ballon doit avoir une position et une couleur différentes du premier.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header" id="headingSeven">
+        <h2 class="mb-0">
+          <button class="btn btn-link collapsed task" type="button" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+            Etape 8 - Crée un second ballon
           </button>
         </h2>
       </div>
