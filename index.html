@@ -238,14 +238,14 @@
       </div>
     </div>
     <div class="card">
-      <div class="card-header" id="headingSeven">
+      <div class="card-header" id="headingSix">
         <h2 class="mb-0">
-          <button class="btn btn-link collapsed task" type="button" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+          <button class="btn btn-link collapsed task" type="button" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
             Etape 6 - Couleur aléatoire
           </button>
         </h2>
       </div>
-      <div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-parent="#accordionExample">
+      <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordionExample">
         <div class="card-body">
 
           <p>Donne une couleur aléatoire à ton ballon à chaque fois que tu déclenches ton animation. Ici tu as deux options:</p>
@@ -259,7 +259,7 @@
           <p>Dans les deux options, c'est la fonction <a href="https://p5js.org/reference/#/p5/fill"><code class="language-js">fill()</code></a> qui détermine la couleur d'une forme en p5.js. Cette fonction prend un ou plusieurs arguments (entre les parenthèses). Ces arguments peuvent être de différents types:</p>
           <ul>
             <li>un <strong>nombre</strong>, comme par exemple: <code class="language-js">fill(51);</code></li>
-            <li>une <strong>string</strong>, comme par exemple: <code class="language-js">fill("hotpink");</code> (<em>oui, oui,</em> <strong style="color: hotpink">hotpink</strong> est une couleur du web!)</li>
+            <li>une <strong>string</strong>, comme par exemple: <code class="language-js">fill("hotpink");</code> (<em>oui, oui,</em> <strong style="color: hotpink">hotpink</strong> est une couleur du web!) ou encore <code class="language-js">fill('#44344f');</code></li>
             <li>un <strong>objet color</strong>, qu'on obtient avec la fonction <code class="language-js">color()</code></li>
           </ul>
 
@@ -272,15 +272,105 @@
 
           <p>Problème! La couleur est toujours noire et le noeud de mon ballon est toujours rouge...</p>
 
-          <p>Pour résoudre le fait que la couleur est toujours noire, il faut voir ce que random() génère comme nombre. Comme faire pour inspecter?🔎 Avec un <code class="language-js">console.log()</code> comme toujours!</p>
+          <p>Pour résoudre le fait que la couleur est toujours noire, il faut voir ce que random() génère comme nombre. Comme faire pour inspecter🔎? Avec un <code class="language-js">console.log()</code> comme toujours!</p>
 
           <img class="img-shadow mb-3" src="images/consolelog_random.gif" alt="">
 
           <p>Toutes les nombres générés par la fonction <code class="language-js">random()</code> se trouvent entre 0 et 1. Or pour la fonction <code class="language-js">fill()</code>, si on code <code class="language-js">fill(0)</code>, c'est la même chose que de coder <code class="language-js">fill("black")</code>. L'échelle va de 0 à 255. Si tu codes <code class="language-js">fill(140)</code> tu vas déjà voir une différence de couleur.</p>
 
-          <p>Notre fonction <code class="language-js">random()</code></p>
+          <p>Si on veut un nombre au hasard de 0 à 255, on peut donner deux arguments à notre fonction random, comme ceci: <code class="language-js">random(0, 255)</code></p>
+
+          <img class="img-shadow mb-3" src="images/random_colors.gif" alt="">
+
+          <p>De nouveaux problèmes!!! YESS!!! Notre ballon change de couleur aléatoirement, mais constamment... et les couleurs semblent être sur une échelle de gris! Et comme ce n'est pas le moment de tester les 50 nuances de gris... 😉</p>
+
+          <p>Une chose à la fois!</p>
+
+          <p>À ton avis, pourquoi la couleur change constamment (ce qui donne un effet stroboscopique passablement desagréable)?</p>
+
+          <p>
+            <a class="btn btn-primary" data-toggle="collapse" href="#collapseHint6A" role="button" aria-expanded="false" aria-controls="collapseHint6A">Indice</a>
+          </p>
+          <div class="collapse mb-3" id="collapseHint6A">
+            <div class="card card-body">
+              <p>On utilise (appelle) la fonction <code class="language-js">random()</code> à l'intérieur de la fonction <code class="language-js">draw()</code> qui elle-même est appelée plusieurs fois par seconde. La couleur change donc plusieurs fois par seconde.</p>
+              <p>Pour remédier à ce problème, il faut appeler la fonction <code class="language-js">random()</code> à l'<em>extérieur</em> de la fonction <code class="language-js">draw()</code>. Deux hypothèses:</p>
+
+              <ul>
+                <li>Au tout début de ton code (hors de toute fonction);</li>
+                <li>Dans la fonction <code class="language-js">setup()</code> qui elle n'est appelée qu'une seule fois au début de ton animation.</li>
+              </ul>
 
 
+            </div>
+          </div>
+          <p>
+            <a class="btn btn-danger" data-toggle="collapse" href="#collapseAnswer6A" role="button" aria-expanded="false" aria-controls="collapseAnswer6A">Réponse</a>
+          </p>
+          <div class="collapse mb-3" id="collapseAnswer6A">
+            <div class="card card-body">
+              <p>Tu ne peux pas utiliser la fonction <code class="language-js">random()</code> au tout début de ton code. Cette fonction est une fonction spécifique de la librairie p5.js. Elle ne peut donc être utilisée qu'à l'intérieur des deux fonctions p5.js que sont <code class="language-js">setup()</code> et <code class="language-js">draw()</code>. On sait déjà que ce ne peut être dans la fonction <code class="language-js">draw()</code> sinon, on retombe dans l'effet stroboscopique.</p>
+
+              <p>Par conséquence, on doit coder cela dans la fonction <code class="language-js">setup()</code>:</p>
+
+              <pre><code class="language-js">
+                function setup() {
+                  createCanvas(400, 400);
+                  fill(random(0, 255));
+                }
+              </code></pre>
+
+              <p>Assure-toi qu'il ne reste pas de <code class="language-js">fill("red")</code> dans ta fonction <code class="language-js">draw()</code> sans quoi le ballon va reprendre sa couleur rouge!</p>
+            </div>
+          </div>
+
+          <p>Comment faire pour avoir des couleurs autres que sur une échelle de gris?</p>
+
+          <p>
+            <a class="btn btn-primary" data-toggle="collapse" href="#collapseHint6B" role="button" aria-expanded="false" aria-controls="collapseHint6B">Indice</a>
+          </p>
+          <div class="collapse mb-3" id="collapseHint6B">
+            <div class="card card-body">
+              <p>Tu peux utiliser la fonction <code class="language-js">color()</code> avec 3 arguments (le premier représente les rouges, le deuxième les verts et le troisième les bleus). C'est ce qu'on appelle la notation RGB (<strong style="color:red">Red</strong>, <strong style="color:green">Green</strong>, <strong style="color:blue">Blue</strong>).</p>
+
+              <p>Ce code va te donner un rectangle bleu, par exemple:</p>
+              <img class="flexgif img-shadow mb-3" src="images/rgb_colors.png" alt="">
+
+              <p>En combinant les fonctions <code class="language-js">fill()</code>, <code class="language-js">color()</code> et <code class="language-js">random()</code>, tu pourras obtenir une couleur aléatoire pour ton ballon à chaque fois que tu relances ton animation.</p>
+
+            </div>
+          </div>
+
+          <h4>B. Une couleur parmi quelques couleurs choisies</h4>
+
+          <p>Comme on l'a vu plus haut, la fonction <code class="language-js">fill()</code> une <em>string</em> comme argument. Cette string sera le "nom" de la couleur en anglais:</p>
+
+          <img class="img-shadow mb-3" src="images/html_colors.png" alt="">
+
+          <p>Si tu te demandes où j'ai pêché les couleurs <em>peachpuff</em> et <em>seagreen</em>, ce <a href="https://htmlcolorcodes.com/fr/noms-de-couleur/" target="_blank">site web</a> va t'intéresser 🎨🖌️</p>
+
+          <p>Une fois que tu as choisi quelques couleurs que tu aimes, il faut les stocker dans la mémoire de ton programme p5.js. Quelle est la chose qu'on utilise <em>toujours</em> en programmation pour stocker des données?</p>
+
+          <p>
+            <a class="btn btn-danger" data-toggle="collapse" href="#collapseAnswer4" role="button" aria-expanded="false" aria-controls="collapseAnswer4">Réponse</a>
+          </p>
+          <div class="collapse mb-3" id="collapseAnswer4">
+            <div class="card card-body">
+              <p>Une <strong>variable</strong> par Toutatis! Et pour stocker plusieurs informations dans une variable, le mieux c'est d'utiliser un tableau (<em>array</em> en anglais):</p>
+              <pre><code class="language-js">
+                let colors = ["yellow", "peachpuff", "seagreen"];
+              </code></pre>
+
+              <p>Pour aller chercher une couleur au hasard dans cette liste, tu peux utiliser notre bonne vieille méthode <code class="language-js">random()</code>:</p>
+
+              <pre><code class="language-js">
+                let colors = ["yellow", "peachpuff", "seagreen"];
+                fill(random(colors));
+              </code></pre>
+
+              <p>Note que tu aurais pu utiliser le code hexadécimal des couleurs ('#44344f') plutôt que leur nom.</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -295,25 +385,513 @@
       </div>
       <div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-parent="#accordionExample">
         <div class="card-body">
-        <p>Ton second ballon doit avoir une position et une couleur différentes du premier.</p>
+          <p>Code un second ballon! Pour commencer il peut s'envoler en même temps que le premier. Mais il doit ne doit pas être superposé sur le premier.</p>
+
+          <img class="img-shadow mb-3" src="images/twin_balloons.gif" alt="">
+
+          <p>
+            <a class="btn btn-primary" data-toggle="collapse" href="#collapseHint7A" role="button" aria-expanded="false" aria-controls="collapseHint7A">Indice</a>
+          </p>
+          <div class="collapse mb-3" id="collapseHint7A">
+            <div class="card card-body">
+              <p>Tu peux réutiliser le code de ton premier ballon, mais la position en <code class="language-js">x</code> doit être différente.</p>
+            </div>
+          </div>
+
+
         </div>
       </div>
     </div>
 
     <div class="card">
-      <div class="card-header" id="headingSeven">
+      <div class="card-header" id="headingEight">
         <h2 class="mb-0">
-          <button class="btn btn-link collapsed task" type="button" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
-            Etape 8 - Crée un second ballon
+          <button class="btn btn-link collapsed task" type="button" data-toggle="collapse" data-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+            Etape 8 - Refactoriser et fonctions
           </button>
         </h2>
       </div>
-      <div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-parent="#accordionExample">
+      <div id="collapseEight" class="collapse" aria-labelledby="headingEight" data-parent="#accordionExample">
         <div class="card-body">
-        <p>Ton second ballon doit avoir une position et une couleur différentes du premier.</p>
+          <p>Comment coder un troisième ballon? Et un quatrième? C'est toujours le même code qu'on copie et qu'on colle. Quelle est la seule chose qui change? La position de départ sur l'axe des <code class="language-js">x</code> du ballon.</p>
+
+          <p>Les bons devs sont très paresseux! Pour être exact, ils n'aiment pas se répéter... Du coup, faire du copier-coller de plein de lignes, ce n'est pas leur tasse de thé ☕</p>
+
+          <p>Lorsque plusieurs instructions se répètent, on peut les "encapsuler" dans une... <strong>fonction</strong>! Tu as déjà utilisé plein de fonctions: <code class="language-js">draw()</code>, <code class="language-js">random()</code>, <code class="language-js">setup()</code>... Ces fonctions étaient déjà existantes dans la librairie p5.js. On va maintenant coder notre propre fonction!</p>
+
+          <p>Nos propres fonctions fonctionnent (haha!) en <strong>2 étapes</strong>:</p>
+          <ol>
+            <li>je déclare (définis) ma fonction</li>
+            <li>j'appelle (utilise) ma fonction</li>
+          </ol>
+
+          <p>Voici la syntaxe pour déclarer une fonction en JavaScript:</p>
+          <pre>
+            <code class="language-js">
+              function leNomDeMaFonction() {
+                // les instructions de ma fonction vont ici!
+              }
+            </code>
+          </pre>
+
+          <p>Un peu de vocabulaire en anglais:</p>
+
+          <img class="flexgif img-shadow mb-3" src="images/fonctions_syntaxe.png" alt="">
+
+
+          <p>Tu pourrais donner n'importe quel nom à ta fonction, mais il vaut mieux que ce soit logique pour que tu puisses t'y retrouver plus tard et pour que tes collègues puissent comprednre ton code! Pas une super idée de coder quelque chose comme ceci (d'autant plus qu'il y a un accent):</p>
+
+          <pre><code class="language-js">
+            function jaimeLePopcornSalé() {
+              noStroke();
+              ellipse(100, 400, 65, 80);
+            }
+          </code></pre>
+
+          <p>Ceci a plus de sens, par contre:</p>
+          <pre><code class="language-js">
+            function drawBalloon() {
+              noStroke();
+              ellipse(100, 400, 65, 80);
+            }
+          </code></pre>
+
+          <p>À la toute fin de ton sketch p5.js, définis ta propre fonction <code class="language-js">drawBalloon()</code>. Entre les deux accolades {}, insère tout le code nécessaire pour dessiner le premier ballon qui se trouvait jusqu'à maintenant dans la fonction <code class="language-js">draw()</code>.</p>
+
+          <pre>
+            <code class="language-js">
+              function draw() {
+                background(220);
+
+                // Premier ballon
+                // ovale
+                noStroke();
+                ellipse(100, positionY, 65, 80);
+
+                // corde
+                stroke(160);
+                strokeWeight(1);
+                line(100 , positionY+ 80/2, 100, positionY+80/2+100);
+
+                // noeud
+                noStroke();
+                ellipse(100, positionY + 80/2, 10, 10);
+
+                // faire monter le premier ballon
+                positionY--
+
+                // Deuxième ballon
+                // ovale
+                noStroke();
+                ellipse(300, positionY, 65, 80);
+
+                // corde
+                stroke(160);
+                strokeWeight(1);
+                line(300 , positionY+ 80/2, 300, positionY+80/2+100);
+
+                // noeud
+                noStroke();
+                ellipse(300, positionY + 80/2, 10, 10);
+
+                // faire monter le deuxième ballon
+                positionY--
+              }
+
+              function drawBalloon() {
+
+              }
+            </code>
+          </pre>
+
+          <p>Va devenir:</p>
+
+          <pre>
+            <code class="language-js">
+              function draw() {
+                background(220);
+
+                // Premier ballon
+                ?????
+
+                // faire monter le premier ballon
+                positionY--
+
+                // Deuxième ballon
+                // ovale
+                noStroke();
+                ellipse(300, positionY, 65, 80);
+
+                // corde
+                stroke(160);
+                strokeWeight(1);
+                line(300 , positionY+ 80/2, 300, positionY+80/2+100);
+
+                // noeud
+                noStroke();
+                ellipse(300, positionY + 80/2, 10, 10);
+
+                // faire monter le deuxième ballon
+                positionY--
+              }
+
+              function drawBalloon() {
+                // ovale
+                noStroke();
+                ellipse(100, positionY, 65, 80);
+
+                // corde
+                stroke(160);
+                strokeWeight(1);
+                line(100 , positionY+ 80/2, 100, positionY+80/2+100);
+
+                // noeud
+                noStroke();
+                ellipse(100, positionY + 80/2, 10, 10);
+              }
+            </code>
+          </pre>
+
+          <p>Chouette, mais si on lance l'animation, on se retrouve avec un seul ballon (le deuxième). C'est qu'on a défini (déclaré) notre fonction <code class="language-js">drawBalloon()</code> mais on ne l'a pas appelée (utilisée). C'est l'étape 2 des fonctions!</p>
+
+          <p>Pour appeler une fonction, il suffit de l'appeler par son nom et de ne pas oublier les parenthèses (où on pourra mettre plus tard des arguments). Dans mon exemple précédent, là où j'ai laissé des ????, je vais donc pouvoir appeler ma fonction:</p>
+
+          <pre>
+            <code class="language-js">
+              function draw() {
+                background(220);
+
+                // Premier ballon
+                drawBalloon();
+
+                // faire monter le premier ballon
+                positionY--
+
+                // Deuxième ballon
+                // ovale
+                noStroke();
+                ellipse(300, positionY, 65, 80);
+
+                // corde
+                stroke(160);
+                strokeWeight(1);
+                line(300 , positionY+ 80/2, 300, positionY+80/2+100);
+
+                // noeud
+                noStroke();
+                ellipse(300, positionY + 80/2, 10, 10);
+
+                // faire monter le deuxième ballon
+                positionY--
+              }
+
+              function drawBalloon() {
+                // ovale
+                noStroke();
+                ellipse(100, positionY, 65, 80);
+
+                // corde
+                stroke(160);
+                strokeWeight(1);
+                line(100 , positionY+ 80/2, 100, positionY+80/2+100);
+
+                // noeud
+                noStroke();
+                ellipse(100, positionY + 80/2, 10, 10);
+              }
+            </code>
+          </pre>
+
+          <p>Ça y est, les deux ballons sont réaparus! Mais... notre code est plus long qu'avant... 🙀 Pourquoi tout ce bazar de fonctions, alors???</p>
+
+          <p>C'est qu'on va pouvoir enlever le code du deuxième ballon de notre fonction <code class="language-js">draw()</code>...</p>
+
+
+          <pre>
+            <code class="language-js">
+              function draw() {
+                background(220);
+
+                // Premier ballon
+                drawBalloon();
+
+                // faire monter le premier ballon
+                positionY--
+
+                // Deuxième ballon
+                ????
+
+                // faire monter le deuxième ballon
+                positionY--
+              }
+
+              function drawBalloon() {
+                // ovale
+                noStroke();
+                ellipse(100, positionY, 65, 80);
+
+                // corde
+                stroke(160);
+                strokeWeight(1);
+                line(100 , positionY+ 80/2, 100, positionY+80/2+100);
+
+                // noeud
+                noStroke();
+                ellipse(100, positionY + 80/2, 10, 10);
+              }
+            </code>
+          </pre><pre>
+            <code class="language-js">
+              function draw() {
+                background(220);
+
+                // Premier ballon
+                drawBalloon();
+
+                // faire monter le premier ballon
+                positionY--
+
+                // Deuxième ballon
+                ????
+
+                // faire monter le deuxième ballon
+                positionY--
+              }
+
+              function drawBalloon() {
+                // ovale
+                noStroke();
+                ellipse(100, positionY, 65, 80);
+
+                // corde
+                stroke(160);
+                strokeWeight(1);
+                line(100 , positionY+ 80/2, 100, positionY+80/2+100);
+
+                // noeud
+                noStroke();
+                ellipse(100, positionY + 80/2, 10, 10);
+              }
+            </code>
+          </pre>
+
+          <p>Par quoi faut-il remplacer les <strong>?????</strong> de mon code?</p>
+
+          <p>
+            <a class="btn btn-primary" data-toggle="collapse" href="#collapseHint8" role="button" aria-expanded="false" aria-controls="collapseHint8">Indice</a>
+          </p>
+          <div class="collapse mb-3" id="collapseHint8">
+            <div class="card card-body">
+              <p>Il faut que j'appelle à nouveau ma fonction <code class="language-js">drawBalloon()</code></p>
+            </div>
+          </div>
+
+          <p>Notre code est beaucoup plus court... mais notre deuxième ballon a disparu! En fait, les deux ballons sont superposés car ils ont tous deux la valeur de la position en X déterminée dans la fonction <code class="language-js">drawBalloon()</code>. Dans mon cas, la position est <strong>100</strong>.</p>
+
+          <p>Ce que je veux, c'est pouvoir changer la position en x dans ma fonction. La première fois que j'appelle ma fonction, je veux que x soit 100, et la deuxième fois, je veux que x soit 300. Pour ce faire, je vais ajouter le <strong>paramètre</strong> <code class="language-js">x</code> dans la définition de ma fonction:</p>
+          <pre>
+            <code class="language-js">
+              function drawBalloon(x) {
+
+              }
+            </code>
+          </pre>
+
+          <p>Partout où j'avais auparavant 100, je peux maintenant utiliser mon paramètre:</p>
+
+          <pre>
+            <code class="language-js">
+              function drawBalloon(x) {
+                // ovale
+                noStroke();
+                ellipse(x, positionY, 65, 80);
+
+                // corde
+                stroke(160);
+                strokeWeight(1);
+                line(x , positionY+ 80/2, x, positionY+80/2+100);
+
+                // noeud
+                noStroke();
+                ellipse(x, positionY + 80/2, 10, 10);
+              }
+            </code>
+          </pre>
+
+          <p>Si tu lances ton code... catastrophe!!! Plus de ballons du tout! Il y a cependant un message d'erreur dans la console:</p>
+          <img class="flexgif img-shadow mb-3" src="images/no_parameter.png" alt="">
+
+          <p>En d'autres mots, le paramètre <code class="language-js">x</code> était vide et du coup, p5.js ne sait plus comment dessiner l'ellipse de notre ballon. Pour donner une valeur à <code class="language-js">x</code>, il faut le faire à chaque fois qu'on <em>appelle</em> la fonction:</p>
+
+          <pre>
+            <code class="language-js">
+              function draw() {
+                background(220);
+
+                // Premier ballon
+                drawBalloon(100);
+
+                // faire monter le premier ballon
+                positionY--
+
+                // Deuxième ballon
+                drawBalloon(????);
+
+
+                // faire monter le deuxième ballon
+                positionY--
+              }
+
+              function drawBalloon(x) {
+                // ovale
+                noStroke();
+                ellipse(x, positionY, 65, 80);
+
+                // corde
+                stroke(160);
+                strokeWeight(1);
+                line(x , positionY+ 80/2, x, positionY+80/2+100);
+
+                // noeud
+                noStroke();
+                ellipse(x, positionY + 80/2, 10, 10);
+              }
+            </code>
+          </pre>
+
+          <p>YIHAAAAAA! Ça fonctionne! BRAVO!!! Et si tu n'es pas déjà écoeuré, tu peux refactoriser encore plus ta fonction <code class="language-js">draw()</code>. As-tu vraiment besoin de faire diminuer la variable <code class="language-js">positionY</code> deux fois?...</p>
+
         </div>
       </div>
     </div>
+
+    <div class="card">
+      <div class="card-header" id="headingNine">
+        <h2 class="mb-0">
+          <button class="btn btn-link collapsed task" type="button" data-toggle="collapse" data-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
+            Etape 9 - Déclencher une action quand on clique 🖱️
+          </button>
+        </h2>
+      </div>
+      <div id="collapseNine" class="collapse" aria-labelledby="headingNine" data-parent="#accordionExample">
+        <div class="card-body">
+          <p>Maintenant que nos deux ballons s'envolent, essayons de voir comment les... péter 💪 La première chose à apprendre, c'est comment faire pour que l'ordinateur réagisse quand on clique sur le canevas. La librairie p5.js est très utile pour ça, car elle a plein de fonctions (pré-définies) qui servent à détecter les actions de l'utilisateur.</p>
+
+          <p>La fonction qu'on va utiliser s'appelle <a href="https://p5js.org/reference/#/p5.Element/mouseClicked"><code class="language-js">mouseClicked</code></a> (<em>souris cliquée</em>).</p>
+
+          <p>On va définir la fonction <code class="language-js">mouseClicked</code> <strong>après</strong> les fonctions <code class="language-js">setup()</code>, <code class="language-js">draw()</code> et <code class="language-js">drawBalloon()</code>. La première instruction qu'on va mettre dans la fonction <code class="language-js">mouseClicked</code>, c'est une instruction pour afficher quelque chose dans la console.</p>
+
+          <img src="images/clicked.gif" alt="" class="img-shadow mb-3">
+
+          <p>Chaque fois que tu cliques sur le canevas, tu vois le mot "cliqué!" apparaître dans la console. Bien sûr, notre but n'est pas d'afficher un message dans notre console mais plutôt de faire "disparaître" le ballon qui a été cliqué.</p>
+
+          <p>Pour commencer, on va se concentrer sur notre premier ballon. On ne va pas l'effacer mais plutôt en donner l'illusion! En fait, on va repositionner le ballon en bas du canevas et on va changer sa couleur. Ni vu ni connu!</p>
+
+          <p>À ton avis, que faut-il coder dans la fonction <code class="language-js">mouseClicked()</code> pour changer la position et la couleur du ballon?</p>
+
+          <p>
+            <a class="btn btn-primary" data-toggle="collapse" href="#collapseHint9" role="button" aria-expanded="false" aria-controls="collapseHint9">Indice</a>
+          </p>
+          <div class="collapse mb-3" id="collapseHint9">
+            <div class="card card-body">
+              <pre>
+                <code class="language-js">
+                function mouseClicked() {
+                  // pour choisir une nouvelle couleur au hasard parmi la liste des couleurs que j'ai choisies et stockées dans une variable colorsList:
+                  fill(random(colorsList));
+
+                  // pour replacer le ballon au bas du canevas
+                  positionY = ???;
+                }
+                </code>
+              </pre>
+
+              <p>Remplace les <strong>???</strong> de mon code par la valeur en Y qui te permettra de positionner ton ballon en bas du canevas.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><!--  end card -->
+
+    <div class="card">
+      <div class="card-header" id="headingTen">
+        <h2 class="mb-0">
+          <button class="btn btn-link collapsed task" type="button" data-toggle="collapse" data-target="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
+            Etape 10 - Clique sur le ballon
+          </button>
+        </h2>
+      </div>
+      <div id="collapseTen" class="collapse" aria-labelledby="headingNine" data-parent="#accordionExample">
+        <div class="card-body">
+          <p>Dès qu'on clique <strong>n'importe où</strong> sur notre canevas, le ballon retourne au bas du canevas. Sympa... mais le ballon ne devrait faire cela que lorsqu'on clique sur celui-ci!</p>
+
+          <p>C'est le temps de mettre une condition à notre retour au bas du canevas. La syntaxe d'une condition en JavaScript est la suivante:</p>
+
+          <pre><code class="language-js">
+            if (CONDITION) {
+              // CODE À EXÉCUTER
+            }
+          </code></pre>
+
+          <p>On connaît déjà que notre code à exécuter. C'est celui qu'on avait avant!</p>
+
+          <pre><code class="language-js">
+            function mouseClicked() {
+              if (CONDITION) {
+                // pour choisir une nouvelle couleur
+                balloonColor = random(colors);
+
+                // pour replacer le ballon au bas du canevas
+                positionY = 400;
+              }
+            }
+          </code></pre>
+
+          <p>Et maintenant, la condition! Comment exprimer en code "quand l'utilisateur clique le ballon"? Rappelle-toi que dans une animation (comme dans beaucoup de jeux vidéo), tout est une question de coordonnées. Du coup, on va vérifier la <em>distance</em> de notre souris par rapport au centre de notre ballon. Et bien entendu, il existe une chouette fonction p5.js pour calculer la distance entre deux points: <a href="https://p5js.org/reference/#/p5/dist"><code class="language-js">dist()</code></a></p>
+
+          <p>Observe les paramètres de la fonction. C'est un peu comme pour la fonction <code class="language-js">line()</code>, il y a 4 paramètres qui représentent les coordonnées des deux points dont on mesure la distance.</p>
+
+          <img class="flexgif img-shadow mb-3" src="images/dist_function.png" alt="">
+
+          <p>Notre premier point en <span style="color: rgb(30, 119, 200);"><strong>bleu</strong></span> est le centre du cercle (ou de l'ellipse) qui forme le ballon. Le second point en <span style="color: rgb(200, 29, 38);"><strong>rouge</strong></span> est l'endroit où le joueur a cliqué. Pour le point rouge, tu peux obtenir les coordonnées avec deux variables spéciales de p5.js appellées <code class="language-js">mouseX</code> et <code class="language-js">mouseY</code>.</p>
+
+          <p>Pour obtenir la distance, tu peux donc coder ceci: <code class="language-js">let d = dist(x1, y1, mouseX, mouseY);</code>  À toi de remplacer <code class="language-js">x1</code> et <code class="language-js">x2</code> par les variables appropriées!</p>
+
+          <p>
+            <a class="btn btn-primary" data-toggle="collapse" href="#collapseHint10" role="button" aria-expanded="false" aria-controls="collapseHint10">Indice</a>
+          </p>
+          <div class="collapse mb-3" id="collapseHint10">
+            <div class="card card-body">
+              <p>Pour la position en Y, tu as déjà déclaré une variable <code class="language-js">positionY</code>. Pourrais-tu également avoir une variable en X?</p>
+            </div>
+          </div>
+
+          <p>Maintenant, utilises <code class="language-js">console.log(d)</code> pour voir la distance s'afficher à chaque fois que tu cliques:</p>
+
+          <img class="flexgif img-shadow mb-3" src="images/dist_balloon.gif" alt="">
+
+          <p>Combine maintenant la distance avec la condition:</p>
+
+          <pre>
+            <code class="language-js">
+            function mouseClicked() {
+              let d = dist(positionX, positionY, mouseX, mouseY);
+              if (d ????) {
+                // pour choisir une nouvelle couleur
+                balloonColor = random(colors);
+
+                // pour replacer le ballon au bas du canevas
+                positionY = 400;
+              }
+            }
+            </code>
+          </pre>
+
+          <p>Remplace les ???? dans mon exemple et voilà, le tour est joué! Bravo!!!!</p>
+        </div>
+      </div>
+    </div><!--  end card -->
+
 
   </div>
 </div>
